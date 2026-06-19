@@ -1,0 +1,25 @@
+<h2>Login</h2>
+<input id="username" placeholder="Username">
+<input id="password" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+
+<script>
+async function login(){
+    let res = await fetch('/login', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+            username: username.value,
+            password: password.value
+        })
+    });
+
+    let data = await res.json();
+
+    if(data.success){
+        window.location = "dashboard.html";
+    } else {
+        alert("Invalid login");
+    }
+}
+</script>
